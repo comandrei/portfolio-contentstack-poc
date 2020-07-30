@@ -1,3 +1,20 @@
 {% extends "base.html" %}
 {% block title %}Project{% endblock %}
-{% block body %} {{ project_name }} {% endblock %}
+{% block body %} 
+<div id="project_details">
+    <h1>{{ project.title }}</h1>
+    <div class="media">
+        {% if project.image %}
+        <img src="{{ project.image }}" />
+        {% endif %}
+        {% if project.video %}
+        <video width="640" height="480">
+            <source src="{[project.video}}" />
+        </video>
+        {% endif %}
+    </div>
+    <div class="description">
+        {{ project.description}}
+    </div>
+</div>
+ {% endblock %}
