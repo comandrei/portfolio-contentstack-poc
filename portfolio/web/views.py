@@ -1,8 +1,23 @@
 from django.shortcuts import render
-# Create your views here.
+from django.urls import reverse
+from .cs import ContentStackAPIWrapper
 
+def _generate_project_thumbnail(project):
+    return  {
+            'title': project['title'],
+            'image': project['media'][0]['screenshot']['image']['url'] if project['media'][0]['screenshot']['image'] else '', 
+            'url': reverse('project_view', args=(project['uid'], ))
+    }
 def homepage(request):
-    return render(request, "home.html", {})
+    cs = ContentStackAPIWrapper()
+    page = cs.get_homepage()
+    featured_projects = []
+    for project in page['featured_projects']:
+        proj = cs.get_entry(project['_content_type_uid'], project['uid'])
+        curated_project = _generate_project_thumbnail(proj)
+        featured_projects.append(curated_project)
+
+    return render(request, "home.html", {'page': page, 'featured_projects': featured_projects})
 
 def contact(request):
     return render(request, "contact.html", {})

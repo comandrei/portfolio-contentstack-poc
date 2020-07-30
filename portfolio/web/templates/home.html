@@ -1,3 +1,30 @@
 {% extends "base.html" %}
 {% block title %} Homepage {% endblock %}
-{% block body %} Hello world {% endblock %}
+{% block body %}
+{{ page.hello|safe }}
+<br />
+{% if featured_projects %}
+<div id="featured_projects">
+    Here's some cool stuff that I worked on
+    <div class="album py-5 bg-dark">
+        <div class="container">
+
+          <div class="row">
+            { %for project in featured_projects %}
+            <div class="col-md-4">
+              <div class="card mb-4 box-shadow">
+                <img class="card-img-top" src="{{project.image}}" alt="Card image cap">
+                <div class="card-body bg-dark">
+                  <p class="card-text"><a href="{{ project.url }}">{{ project.title }}</a></p>
+                  </div>
+                </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+
+    
+</div>
+{% endif %}
+{% endblock %}
