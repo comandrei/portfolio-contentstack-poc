@@ -5,7 +5,7 @@ def homepage(request):
     return render(request, "home.html", {})
 
 def contact(request):
-    pass
+    return render(request, "contact.html", {})
 
-def project(request):
-    pass
+def project(request, project_name):
+    return render(request, "project.html", {'project_name': project_name})
