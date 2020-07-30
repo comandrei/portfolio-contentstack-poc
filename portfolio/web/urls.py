@@ -2,7 +2,8 @@ from django.urls import path
 from .views import homepage, contact, project
 
 urlpatterns = [
-    path('contact', contact),
+    path('contact', contact, name='contact'),
+    path('projects', project, name='projects'),
     path('project/<slug:project_name>', project),
-    path('', homepage)
+    path('', homepage, name='home')
 ]
