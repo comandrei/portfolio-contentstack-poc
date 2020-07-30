@@ -1,3 +1,14 @@
 {% extends "base.html" %}
 {% block title %}Projects{% endblock %}
-{% block body %} Projects list {% endblock %}
+{% block body %}
+All Projects
+<div class="album py-5 bg-dark">
+    <div class="container">
+      <div class="row">
+        {% for project in featured_projects %}
+            {% include 'includes/project_thumbnail.html' %} 
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+ {% endblock %}

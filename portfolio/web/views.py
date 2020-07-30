@@ -26,4 +26,12 @@ def project(request, project_name):
     return render(request, "project.html", {'project_name': project_name})
 
 def projects(request):
-    return render(request, "projects.html", {})
+    cs = ContentStackAPIWrapper()
+    projects = cs.get_multiple_entries('project')
+    featured_projects = []
+    print(projects)
+    for project in projects['entries']:
+        curated_project = _generate_project_thumbnail(project)
+        featured_projects.append(curated_project)
+
+    return render(request, "projects.html", {'featured_projects': featured_projects})
