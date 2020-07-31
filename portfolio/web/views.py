@@ -6,6 +6,7 @@ def _generate_project_thumbnail(project):
     curated_project = {
             'title': project['title'],
             'url': reverse('project_view', args=(project['uid'], )),
+            'external_url_label': project['url']['title'],
             'external_url': project['url']['href'],
             'description': project['project_description']
     }
