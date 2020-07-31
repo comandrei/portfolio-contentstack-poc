@@ -4,17 +4,26 @@
 <div id="project_details">
     <h1>{{ project.title }}</h1>
     <div class="media">
+        <div class="row">
         {% if project.image %}
-        <img src="{{ project.image }}" />
+        <div class="col-md">
+            <img src="{{ project.image }}?width=640" />
+        </div>
         {% endif %}
         {% if project.video %}
-        <video width="640" height="480">
-            <source src="{[project.video}}" />
-        </video>
+        <div class="col-md">
+            <video width="640" height="480" controls>
+                <source src="{{project.video}}" />
+            </video>
+        </div>
         {% endif %}
+        </div>
     </div>
-    <div class="description">
-        {{ project.description}}
+    <div class="row">
+        <div class="col-md-6 description">
+            {{ project.description}}
+        </div>
     </div>
+    
 </div>
  {% endblock %}
