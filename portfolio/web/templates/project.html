@@ -3,24 +3,28 @@
 {% block body %} 
 <div id="project_details">
     <h1>{{ project.title }}</h1>
-    <div class="media">
-        <div class="row">
-        {% if project.image %}
-        <div class="col-md">
-            <img src="{{ project.image }}?width=640" />
+    <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+          <a class="nav-item nav-link active" id="nav-pic-tab" data-toggle="tab" href="#nav-picture" role="tab" aria-controls="nav-picture" aria-selected="true">Media</a>
+          {% if project.video %}
+          <a class="nav-item nav-link" id="nav-video-tab" data-toggle="tab" href="#nav-video" role="tab" aria-controls="nav-profile" aria-selected="false">Video</a>
+          {% endif %}
+          
         </div>
-        {% endif %}
+      </nav>
+      <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="nav-picture" role="tabpanel" aria-labelledby="nav-picture"><img src="{{ project.image }}?width=640" /></div>
         {% if project.video %}
-        <div class="col-md">
+        <div class="tab-pane fade" id="nav-video" role="tabpanel" aria-labelledby="nav-profile-tab">
             <video width="640" height="480" controls>
                 <source src="{{project.video}}" />
             </video>
         </div>
         {% endif %}
-        </div>
-    </div>
+      </div>
+    <br />
     <div class="row">
-        <div class="col-md-6 description">
+        <div class="col-md description">
             {{ project.description}}
         </div>
     </div>
